@@ -4,6 +4,7 @@ import domain.Rebelde;
 import java.io.FileNotFoundException;
 import java.io.UnsupportedEncodingException;
 
+import static domain.Raca.GREE;
 import static domain.Raca.HUMANO;
 
 public class Main {
@@ -11,9 +12,9 @@ public class Main {
     Rebelde rebelde = new Rebelde();
     IC ic = new IC(rebelde);
 
-    rebelde.setNome("Teste");
-    rebelde.setIdade(29);
-    rebelde.setRaca(HUMANO);
+    rebelde.setNome("Not Human");
+    rebelde.setIdade(46);
+    rebelde.setRaca(GREE);
 
     System.out.println(rebelde.toString());
 

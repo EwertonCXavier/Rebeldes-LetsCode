@@ -1,2 +1,4 @@
 LISTA DE REBELDES ACEITOS: 
 Nome: Teste, Idade: 29 e Raca: HUMANO
+Nome: Ewerton, Idade: 21 e Raca: HUMANO
+Nome: Not Human, Idade: 46 e Raca: GREE

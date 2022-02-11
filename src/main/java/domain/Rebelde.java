@@ -1,40 +1,20 @@
 package domain;
 
-import java.io.FileNotFoundException;
-import java.io.PrintWriter;
-import java.io.UnsupportedEncodingException;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+import java.io.*;
+
+@Getter
+@Setter
+@NoArgsConstructor
 public class Rebelde implements IRebelde{
   private String nome;
   private int idade;
   private Raca raca;
+  PrintWriter writer = null;
 
-  public Rebelde() {
-  }
-
-  public void setNome(String nome) {
-    this.nome = nome;
-  }
-
-  public String getNome() {
-    return this.nome;
-  }
-
-  public void setIdade(int idade) {
-    this.idade = idade;
-  }
-
-  public int getIdade() {
-    return this.idade;
-  }
-
-  public void setRaca(Raca raca) {
-    this.raca = raca;
-  }
-
-  public Raca getRaca() {
-    return this.raca;
-  }
 
   @Override
   public String toString() {
@@ -47,14 +27,22 @@ public class Rebelde implements IRebelde{
 
   @Override
   public void inserirRebelde(Rebelde rebelde) throws FileNotFoundException, UnsupportedEncodingException {
-    PrintWriter writer = null;
+
     try {
-      writer = new PrintWriter("rebeldes.txt", "UTF-8");
-      writer.println("LISTA DE REBELDES ACEITOS: ");
-      writer.println("Nome: " + rebelde.getNome() + ", Idade: " + rebelde.getIdade() + " e Raca: " + rebelde.getRaca());
-    } catch (FileNotFoundException e) {
-      e.printStackTrace();
-    } catch (UnsupportedEncodingException e) {
+      File rebelFile = new File("./rebeldes.txt");
+      boolean exists = rebelFile.exists();
+      System.out.println("Does this file exist? " + exists);
+
+      if(exists) {
+        writer = new PrintWriter(new BufferedWriter(new FileWriter("rebeldes.txt", true)));
+        writer.println("Nome: " + rebelde.getNome() + ", Idade: " + rebelde.getIdade() + " e Raca: " + rebelde.getRaca());
+      } else {
+        writer = new PrintWriter("rebeldes.txt", "UTF-8");
+        writer.println("LISTA DE REBELDES ACEITOS: ");
+        writer.println("Nome: " + rebelde.getNome() + ", Idade: " + rebelde.getIdade() + " e Raca: " + rebelde.getRaca());
+      }
+
+    } catch (IOException e) {
       e.printStackTrace();
     } finally {
       writer.close();
