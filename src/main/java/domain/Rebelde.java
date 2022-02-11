@@ -5,6 +5,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.io.*;
+import java.nio.charset.StandardCharsets;
 
 @Getter
 @Setter
@@ -37,7 +38,7 @@ public class Rebelde implements IRebelde{
         writer = new PrintWriter(new BufferedWriter(new FileWriter("rebeldes.txt", true)));
         writer.println("Nome: " + rebelde.getNome() + ", Idade: " + rebelde.getIdade() + " e Raca: " + rebelde.getRaca());
       } else {
-        writer = new PrintWriter("rebeldes.txt", "UTF-8");
+        writer = new PrintWriter("rebeldes.txt", StandardCharsets.UTF_8);
         writer.println("LISTA DE REBELDES ACEITOS: ");
         writer.println("Nome: " + rebelde.getNome() + ", Idade: " + rebelde.getIdade() + " e Raca: " + rebelde.getRaca());
       }
@@ -45,6 +46,7 @@ public class Rebelde implements IRebelde{
     } catch (IOException e) {
       e.printStackTrace();
     } finally {
+      System.out.println(rebelde.toString());
       writer.close();
     }
   }
